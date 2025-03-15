@@ -1,0 +1,53 @@
+#+TITLE: V3G Power Share
+
+* Electric Vehicle Charging Scheduler
+
+** Contents :TOC:
+- [[#electric-vehicle-charging-scheduler][Electric Vehicle Charging Scheduler]]
+  - [[#introduction][Introduction]]
+  - [[#dining-philosopher-problem][Dining Philosopher Problem]]
+  - [[#ev-charging-scheduling-problem][EV Charging Scheduling Problem]]
+  - [[#development][Development]]
+
+** Introduction
+The problem: This software is an attempt to write a controller for scheduling
+electric vehicle charging across a large number of charge points which can draw
+more power than the underlying power source (circuit) is actually able to
+supply.
+
+The proposed solution is to schedule the time that each vehicle is connected,
+and connect each vehicle in turn as scheduled.
+
+This problem is similar to the classical "dining philosopher" problem, except
+that the chopsticks are shared from a pool that everyone uses.
+
+** Dining Philosopher Problem
+
+Number of diners: 5 (N)
+
+- Uses semaphores to give mutually exclusive access to 'chopstick'.
+- Uses a thread for each philosopher.
+- Thread loops through each philosophers actions.
+- Global lock before checking if available to eat,
+  (diner on left and right not eating).
+  
+Operations:
+- test
+  - 
+- take_fork
+- put_fork
+- philosopher
+  - loop for each philosopher
+  - take_fork (and eat)
+  - put_fork
+      
+- main
+
+** EV Charging Scheduling Problem
+Number of charge points: 4
+
+** Development
+Required packages:
+- libgtest-dev
+  
+
