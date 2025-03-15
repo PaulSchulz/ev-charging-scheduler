@@ -1,5 +1,5 @@
-#include "development-macros.h"
-
+#include "development.h"
+//////////////////////////////////////////////////////////////////////////////
 #include "scheduler.h"
 
 unsigned long lastSwitchTime = 0;
@@ -13,12 +13,6 @@ void job4() { ESP_LOGD("debug", "Running Job %d", 4); }
 // Array of job function pointers
 void (*jobs[])() = { job1, job2, job3, job4 };
 
-unsigned long millis() {
-    return std::chrono::duration_cast<std::chrono::milliseconds>(
-                                                                 std::chrono::steady_clock::now().time_since_epoch()
-                                                                 ).count();
-}
-
 void runScheduler() {
     lastSwitchTime = millis();
 
@@ -31,9 +25,17 @@ void runScheduler() {
         if (millis() - lastSwitchTime >= SWITCH_INTERVAL) {
             lastSwitchTime = millis();
             jobIndex = (jobIndex + 2) % 4;  // Rotate jobs round-robin
-            std::cout << "Switching jobs..." << std::endl;
+            ESP_LOGD("debug", "Switching jobs...");
         }
 
-        std::this_thread::sleep_for(std::chrono::seconds(1));  // Simulate workload
+        sleep(1);
     }
+}
+
+void setup() {
+
+}
+
+void loop() {
+    runScheduler();
 }

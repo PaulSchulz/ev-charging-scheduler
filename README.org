@@ -8,6 +8,8 @@
   - [[#development][Development]]
 
 ** Introduction
+*---WORK IN PROGRESS---*
+
 The problem: This software is an attempt to write a controller for scheduling
 electric vehicle charging across a large number of charge points which can draw
 more power than the underlying power source (circuit) is actually able to
@@ -29,20 +31,28 @@ Number of diners: 5 (N)
 - Global lock before checking if available to eat,
   (diner on left and right not eating).
   
-Operations:
+Functions:
 - test
-  - 
 - take_fork
 - put_fork
 - philosopher
   - loop for each philosopher
-  - take_fork (and eat)
-  - put_fork
-      
+    - wait for mutex
+    - test that neighbours are not eating
+      - take_fork (and eat)
+    - release mutex
+    - put_fork
 - main
+
+To build:
+#+begin_src shell
+  make diners
+#+end_src
 
 ** EV Charging Scheduling Problem
 Number of charge points: 4
+
+
 
 ** Development
 Required packages:

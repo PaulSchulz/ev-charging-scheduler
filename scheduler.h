@@ -6,7 +6,7 @@
 #include <thread>
 
 // Function to get the current time in milliseconds
-extern unsigned long millis();
+// extern unsigned long millis();
 
 // Function to execute jobs and manage switching
 void runScheduler();
