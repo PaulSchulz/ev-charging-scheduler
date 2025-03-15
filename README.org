@@ -3,35 +3,41 @@
 ** Contents :TOC:
 - [[#electric-vehicle-charging-scheduler][Electric Vehicle Charging Scheduler]]
   - [[#introduction][Introduction]]
-  - [[#dining-philosopher-problem][Dining Philosopher Problem]]
   - [[#ev-charging-scheduling-problem][EV Charging Scheduling Problem]]
+  - [[#scheduling-algorithms][Scheduling Algorithms]]
   - [[#development][Development]]
 
 ** Introduction
 *---WORK IN PROGRESS---*
 
-The problem: This software is an attempt to write a controller for scheduling
-electric vehicle charging across a large number of charge points which can draw
-more power than the underlying power source (circuit) is actually able to
-supply.
+The problem: This software is part of a project for an EV charging controller
+that allows multiple EVs to share charging across a number of charge points
+which can draw more power than the underlying power circuit can supply.
 
-The proposed solution is to schedule the time that each vehicle is connected,
-and connect each vehicle in turn as scheduled.
+The proposal is to schedule the time that each vehicle is charged, and then
+charge each vehicle in turn as scheduled.
 
+*** Dining Philosopher Problem
 This problem is similar to the classical "dining philosopher" problem, except
 that the chopsticks are shared from a pool that everyone uses.
 
-** Dining Philosopher Problem
+*Note:* This code uses threads and a mutex for concurrent execution. This is more
+complicated then the way this code will currently work. This may change in the
+future if more control is implemented in the charge point. eg OCPP.
+
+The code in 'dining.c' was created with the help of AI. There are numerous
+other examples available on the internet.
 
 Number of diners: 5 (N)
 
+Features/Characteristics
 - Uses semaphores to give mutually exclusive access to 'chopstick'.
 - Uses a thread for each philosopher.
 - Thread loops through each philosophers actions.
 - Global lock before checking if available to eat,
   (diner on left and right not eating).
   
-Functions:
+Functions/Process
 - test
 - take_fork
 - put_fork
@@ -52,10 +58,23 @@ To build:
 ** EV Charging Scheduling Problem
 Number of charge points: 4
 
+** Scheduling Algorithms
+*** Round Robin (simplest)
+For 2 points out of N:
+- Turn on 2 charge points, and wait charging interval
+- Turn off charge points
+- Repeat with next two charge points
 
+Pros
+- Simple, easily understandable charging schedule.
 
+Cons
+- Inefficient if charge points are not fully occupied.
+- Inefficient if EV connected out-of-sequence.
+  
 ** Development
-Required packages:
-- libgtest-dev
+Required packages in Unbuntu
+- build-essential
+- git
   
 

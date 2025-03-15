@@ -1,5 +1,6 @@
-#include "development.h"
 //////////////////////////////////////////////////////////////////////////////
+#include "esphome.h"
+
 #include "scheduler.h"
 
 #define TAG "scheduler"
@@ -42,3 +43,16 @@ void loop() {
     ESP_LOGD(TAG,"Start scheduler");
     runScheduler();
 }
+
+// class MyCustomComponent : public Component {
+// public:
+//
+//     void setup() override {
+//         ESP_LOGD(TAG,"setup()");
+//     };
+//
+//     void loop() override {
+//         ESP_LOGD(TAG,"loop()");
+//     };
+//
+// } // class
