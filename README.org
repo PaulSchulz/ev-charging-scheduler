@@ -1,5 +1,3 @@
-#+TITLE: V3G Power Share
-
 * Electric Vehicle Charging Scheduler
 
 ** Contents :TOC:
