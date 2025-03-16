@@ -4,6 +4,7 @@
 #include "scheduler.h"
 
 #define TAG "scheduler"
+#define SCHEDULER_NAME "simple"
 
 unsigned long lastSwitchTime = 0;
 int jobIndex = 0;
@@ -36,6 +37,7 @@ void runScheduler() {
 }
 
 void setup() {
+    ESP_LOGD(TAG,"Scheduler: %s", SCHEDULER_NAME);
     ESP_LOGD(TAG,"Charging interval: %0.1fs", SWITCH_INTERVAL/1000.0);
 }
 
