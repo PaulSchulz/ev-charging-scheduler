@@ -17,7 +17,12 @@ void job4() { ESP_LOGD(TAG, "Enable charge point %d", 4); }
 // Array of job function pointers
 void (*jobs[])() = { job1, job2, job3, job4 };
 
-void runScheduler() {
+void scheduler_config() {
+    ESP_LOGD(TAG,"Scheduler: %s", SCHEDULER_NAME);
+    ESP_LOGD(TAG,"  Scheduling interval: %0.1fs", SWITCH_INTERVAL/1000.0);
+}
+
+void scheduler_run() {
     lastSwitchTime = millis();
 
     while (true) {
@@ -29,21 +34,24 @@ void runScheduler() {
         if (millis() - lastSwitchTime >= SWITCH_INTERVAL) {
             lastSwitchTime = millis();
             jobIndex = (jobIndex + 2) % 4;  // Rotate jobs round-robin
-            ESP_LOGD(TAG, "New charging period...");
+            ESP_LOGD(TAG, "New charging interval");
         }
 
         sleep(1);
     }
 }
 
+void config() {
+    scheduler_config();
+}
+
 void setup() {
-    ESP_LOGD(TAG,"Scheduler: %s", SCHEDULER_NAME);
-    ESP_LOGD(TAG,"Charging interval: %0.1fs", SWITCH_INTERVAL/1000.0);
+
 }
 
 void loop() {
     ESP_LOGD(TAG,"Start scheduler");
-    runScheduler();
+    scheduler_run();
 }
 
 // class MyCustomComponent : public Component {

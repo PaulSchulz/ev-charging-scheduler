@@ -4,5 +4,6 @@
 unsigned int millis();
 void sleep(int);
 
+extern void config();
 extern void setup();
 extern void loop();

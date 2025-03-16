@@ -2,6 +2,7 @@
 #include "scheduler.h"
 
 int main() {
+    config();
     setup();
     while (true) {
         loop();

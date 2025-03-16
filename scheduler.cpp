@@ -32,6 +32,14 @@ void charge_status(int* activeIndex) {
 void charge_start(int n) { ESP_LOGD(TAG, "  Start charge point %d", n); }
 void charge_stop(int n) { ESP_LOGD(TAG, "  Stop charge point %d", n); }
 
+
+void scheduler_config() {
+    ESP_LOGD(TAG,"Scheduler: %s", SCHEDULER_NAME);
+    ESP_LOGD(TAG,"  Total charge points:  %d", totalPoints);
+    ESP_LOGD(TAG,"  Active charge points: %d", activePoints);
+    ESP_LOGD(TAG,"  Schedule interval: %0.1fs", SWITCH_INTERVAL/1000.0);
+}
+
 void scheduler_setup() {
     ESP_LOGD(TAG, "Initial Setup");
 
@@ -79,9 +87,11 @@ void scheduler_run() {
     }
 }
 
+void config() {
+    scheduler_config();
+}
+
 void setup() {
-    ESP_LOGD(TAG,"Scheduler: %s", SCHEDULER_NAME);
-    ESP_LOGD(TAG,"Charging interval: %0.1fs", SWITCH_INTERVAL/1000.0);
     scheduler_setup();
 }
 

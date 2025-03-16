@@ -9,7 +9,7 @@
 // extern unsigned long millis();
 
 // Function to execute jobs and manage switching
-void runScheduler();
+// void runScheduler();
 
 // Expose global variables for testing
 extern unsigned long lastSwitchTime;
